@@ -1,76 +1,73 @@
 <!DOCTYPE html>
 <html lang="es">
-
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Pollería Online</title>
+  <title>Pollería Eli</title>
 
   <link rel="stylesheet" href="styles.css">
+
+  <!-- ICONOS -->
+  <link rel="stylesheet"
+  href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
 </head>
 
 <body>
 
   <!-- HEADER -->
-  <header class="header">
+  <header class="hero">
 
-    <h1>🍗 Pollería Online</h1>
+    <div class="overlay"></div>
 
-    <p>
-      Haz tu pedido rápido y fácil
-    </p>
+    <div class="hero-content">
 
-  </header>
+      <h1>🍗 POLLERÍA ELI</h1>
 
-  <!-- CONTENIDO -->
-  <div class="container">
-
-    <!-- MENÚ -->
-    <div class="menu" id="menu"></div>
-
-    <!-- CARRITO -->
-    <div class="carrito">
-
-      <h2>🛒 Pedido</h2>
-
-      <div id="carrito"></div>
-
-      <h3 class="total">
-        Total: $
-        <span id="total">0</span>
-      </h3>
-
-      <hr>
-
-      <!-- UBICACIÓN -->
-      <h3>📍 Ubicación</h3>
-
-      <button class="btn-ubicacion" onclick="usarUbicacion()">
-        📍 Usar mi ubicación actual
-      </button>
-
-      <button class="btn-mapa" onclick="verUbicacion()">
-        🗺️ Ver ubicación seleccionada
-      </button>
-
-      <p id="estado"></p>
-
-      <!-- WHATSAPP -->
-      <input
-        type="text"
-        id="whatsapp"
-        placeholder="Tu número de WhatsApp">
-
-      <!-- ENVIAR -->
-      <button class="btn-final" onclick="enviarPedido()">
-        Confirmar pedido 🍗📲
-      </button>
+      <p>
+        El mejor pollo fresco hasta tu casa
+      </p>
 
     </div>
 
-  </div>
+  </header>
 
-  <script src="app.js"></script>
+  <!-- CONTENEDOR -->
+  <main class="app">
 
-</body>
+    <!-- MENÚ -->
+    <section class="menu-section">
+
+      <div class="title-row">
+        <h2>🔥 Nuestro menú</h2>
+      </div>
+
+      <div class="menu-grid" id="menu"></div>
+
+    </section>
+
+    <!-- CARRITO -->
+    <aside class="cart">
+
+      <div class="cart-header">
+        <h2>🛒 Tu pedido</h2>
+      </div>
+
+      <div id="carrito"></div>
+
+      <div class="total-box">
+        TOTAL:
+        <span>$<span id="total">0</span></span>
+      </div>
+
+      <!-- UBICACIÓN -->
+      <div class="gps-box">
+
+        <h3>📍 Tu ubicación</h3>
+
+        <button class="btn-location"
+        onclick="usarUbicacion()">
+
+          <i class="fa-solid fa-location-dot"></i>
+          Usar mi ubicación actual
+
 </html>
