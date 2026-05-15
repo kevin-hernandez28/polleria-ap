@@ -109,7 +109,7 @@ Object.keys(PRECIOS)
 
         <p class="precio">
 
-          $${PRECIOS[item]}
+          $${PRECIOS[item].toFixed(2)}
 
         </p>
 
@@ -188,7 +188,7 @@ function menos(i){
 }
 
 /* =========================
-   AGREGAR AL CARRITO
+   AGREGAR
 ========================= */
 
 function agregar(i){
@@ -232,7 +232,7 @@ function agregar(i){
 }
 
 /* =========================
-   RENDER CARRITO
+   RENDER
 ========================= */
 
 function render(){
@@ -273,7 +273,7 @@ function render(){
         <p>
 
           💰 Subtotal:
-          $${p.subtotal}
+          $${p.subtotal.toFixed(2)}
 
         </p>
 
@@ -296,7 +296,8 @@ function render(){
 
   document.getElementById(
     "total"
-  ).innerText = total;
+  ).innerText =
+  total.toFixed(2);
 }
 
 /* =========================
@@ -311,7 +312,7 @@ function eliminar(index){
 }
 
 /* =========================
-   GPS
+   UBICACION
 ========================= */
 
 function usarUbicacion(){
@@ -440,12 +441,12 @@ function enviarPedido(){
 `📦 *Producto:* ${p.item}%0A
 ${p.tipo ? `🔪 *Corte:* ${p.tipo}%0A` : ""}
 🔢 *Cantidad:* ${p.cantidad}%0A
-💰 *Subtotal:* $${p.subtotal}%0A%0A`;
+💰 *Subtotal:* $${p.subtotal.toFixed(2)}%0A%0A`;
   });
 
   ticket +=
 `━━━━━━━━━━━━━━━%0A
-💵 *TOTAL:* $${total}%0A%0A
+💵 *TOTAL:* $${total.toFixed(2)}%0A%0A
 
 📱 *WhatsApp Cliente:*%0A
 ${whatsapp}%0A%0A
@@ -461,7 +462,7 @@ https://www.google.com/maps?q=${lat},${lng}%0A%0A
   const numeroDueno =
   "522281807458";
 
-  /* URL WHATSAPP */
+  /* URL */
 
   const url =
 `https://wa.me/${numeroDueno}?text=${ticket}`;
