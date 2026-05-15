@@ -1,4 +1,5 @@
 const PRECIOS = {
+
   pechuga: 52,
   piernas: 12,
   ala: 5,
@@ -14,41 +15,70 @@ let carrito = [];
 let lat = null;
 let lng = null;
 
-// 🍗 MENÚ
-const menu = document.getElementById("menu");
+// MENÚ
+const menu =
+document.getElementById("menu");
 
 // cantidades temporales
 let temp = {};
-Object.keys(PRECIOS).forEach(i => temp[i] = 1);
 
-// 🧾 GENERAR CARDS
-Object.keys(PRECIOS).forEach(item => {
+Object.keys(PRECIOS)
+.forEach(i => temp[i] = 1);
+
+// GENERAR CARDS
+Object.keys(PRECIOS)
+.forEach(item => {
 
   let extraMenu = "";
 
-  // 🍗 SUBMENÚ PECHUGA
+  // PECHUGA
   if(item === "pechuga"){
+
     extraMenu = `
-      <select id="tipo-pechuga" class="select-tipo">
-        <option value="Entera">Entera</option>
-        <option value="Partida">Partida</option>
-        <option value="Bisteck">Bisteck</option>
+      <select id="tipo-pechuga"
+      class="select-tipo">
+
+        <option value="Entera">
+          Entera
+        </option>
+
+        <option value="Partida">
+          Partida
+        </option>
+
+        <option value="Bisteck">
+          Bisteck
+        </option>
+
       </select>
     `;
   }
 
-  // 🍗 SUBMENÚ PIERNAS
+  // PIERNAS
   if(item === "piernas"){
+
     extraMenu = `
-      <select id="tipo-piernas" class="select-tipo">
-        <option value="Normal">Normal</option>
-        <option value="Partidas">Partidas</option>
-        <option value="Bisteck">Bisteck</option>
+      <select id="tipo-piernas"
+      class="select-tipo">
+
+        <option value="Normal">
+          Normal
+        </option>
+
+        <option value="Partidas">
+          Partidas
+        </option>
+
+        <option value="Bisteck">
+          Bisteck
+        </option>
+
       </select>
     `;
   }
 
   menu.innerHTML += `
+
     <div class="card">
 
       <h3>${item}</h3>
@@ -61,7 +91,8 @@ Object.keys(PRECIOS).forEach(item => {
 
       <div class="contador">
 
-        <button onclick="menos('${item}')">
+        <button
+        onclick="menos('${item}')">
           -
         </button>
 
@@ -69,14 +100,19 @@ Object.keys(PRECIOS).forEach(item => {
           1
         </span>
 
-        <button onclick="mas('${item}')">
+        <button
+        onclick="mas('${item}')">
           +
         </button>
 
       </div>
 
-      <button class="btn-add" onclick="agregar('${item}')">
+      <button
+      class="btn-add"
+      onclick="agregar('${item}')">
+
         Agregar 🛒
+
       </button>
 
     </div>
@@ -106,69 +142,94 @@ function menos(i){
   }
 }
 
-// 🛒 AGREGAR AL CARRITO
+// 🛒 AGREGAR
 function agregar(i){
 
   let tipo = "";
 
-  // 🍗 tipo pechuga
+  // pechuga
   if(i === "pechuga"){
-    tipo = document.getElementById("tipo-pechuga").value;
+
+    tipo =
+    document.getElementById(
+      "tipo-pechuga"
+    ).value;
   }
 
-  // 🍗 tipo piernas
+  // piernas
   if(i === "piernas"){
-    tipo = document.getElementById("tipo-piernas").value;
+
+    tipo =
+    document.getElementById(
+      "tipo-piernas"
+    ).value;
   }
 
   carrito.push({
-    item: i,
-    tipo: tipo,
-    cantidad: temp[i],
-    subtotal: temp[i] * PRECIOS[i]
+
+    item:i,
+    tipo:tipo,
+    cantidad:temp[i],
+
+    subtotal:
+    temp[i] * PRECIOS[i]
   });
 
   render();
 }
 
-// 🧾 RENDER CARRITO
+// 🧾 RENDER
 function render(){
 
   let html = "";
   let total = 0;
 
-  carrito.forEach((p, index)=>{
+  carrito.forEach((p,index)=>{
 
     total += p.subtotal;
 
     html += `
+
       <div class="item-carrito">
 
         <b>${p.item}</b>
-        ${p.tipo ? "(" + p.tipo + ")" : ""}
+
+        ${p.tipo
+          ? "(" + p.tipo + ")"
+          : ""
+        }
 
         <br>
 
-        Cantidad: ${p.cantidad}
+        Cantidad:
+        ${p.cantidad}
 
         <br>
 
-        Subtotal: $${p.subtotal}
+        Subtotal:
+        $${p.subtotal}
 
         <br>
 
-        <button class="btn-eliminar"
-                onclick="eliminar(${index})">
+        <button
+        class="btn-eliminar"
+        onclick="eliminar(${index})">
+
           ❌ Eliminar
+
         </button>
 
       </div>
     `;
   });
 
-  document.getElementById("carrito").innerHTML = html;
+  document.getElementById(
+    "carrito"
+  ).innerHTML = html;
 
-  document.getElementById("total").innerText = total;
+  document.getElementById(
+    "total"
+  ).innerText = total;
 }
 
 // ❌ ELIMINAR
@@ -179,35 +240,45 @@ function eliminar(index){
   render();
 }
 
-// 📍 USAR UBICACIÓN REAL
+// 📍 USAR GPS
 function usarUbicacion(){
 
-  const estado = document.getElementById("estado");
+  const estado =
+  document.getElementById(
+    "estado"
+  );
 
   if(!navigator.geolocation){
 
-    alert("Tu navegador no soporta GPS");
+    alert(
+      "Tu navegador no soporta GPS"
+    );
 
     return;
   }
 
-  estado.innerText = "📡 Obteniendo ubicación...";
+  estado.innerText =
+  "📡 Obteniendo ubicación...";
 
-  navigator.geolocation.getCurrentPosition(
+  navigator.geolocation
+  .getCurrentPosition(
 
     (pos)=>{
 
-      lat = pos.coords.latitude;
-      lng = pos.coords.longitude;
+      lat =
+      pos.coords.latitude;
+
+      lng =
+      pos.coords.longitude;
 
       estado.innerText =
-        "✅ Ubicación registrada correctamente";
+      "✅ Ubicación registrada";
     },
 
     ()=>{
 
       estado.innerText =
-        "❌ No se pudo obtener ubicación";
+      "❌ No se pudo obtener ubicación";
     }
   );
 }
@@ -217,46 +288,58 @@ function verUbicacion(){
 
   if(!lat || !lng){
 
-    alert("Primero usa tu ubicación");
+    alert(
+      "Primero usa tu ubicación"
+    );
 
     return;
   }
 
   const url =
-    `https://www.google.com/maps?q=${lat},${lng}`;
+  `https://www.google.com/maps?q=${lat},${lng}`;
 
-  window.open(url, "_blank");
+  window.open(url,"_blank");
 }
 
 // 📲 ENVIAR PEDIDO
 function enviarPedido(){
 
   const whatsapp =
-    document.getElementById("whatsapp").value;
+  document.getElementById(
+    "whatsapp"
+  ).value;
 
   if(carrito.length === 0){
 
-    alert("Agrega productos");
+    alert(
+      "Agrega productos"
+    );
 
     return;
   }
 
   if(!whatsapp){
 
-    alert("Escribe tu WhatsApp");
+    alert(
+      "Escribe tu WhatsApp"
+    );
 
     return;
   }
 
   if(!lat || !lng){
 
-    alert("Usa tu ubicación");
+    alert(
+      "Usa tu ubicación"
+    );
 
     return;
   }
 
   let total =
-    carrito.reduce((a,b)=>a+b.subtotal,0);
+  carrito.reduce(
+    (a,b)=>a+b.subtotal,0
+  );
 
   let ticket =
 `🍗 PEDIDO POLLERÍA
@@ -267,7 +350,10 @@ function enviarPedido(){
 
     ticket +=
 `${p.item}
-${p.tipo ? "(" + p.tipo + ")" : ""}
+${p.tipo
+  ? "(" + p.tipo + ")"
+  : ""
+}
 x${p.cantidad}
 = $${p.subtotal}
 
@@ -290,7 +376,8 @@ https://www.google.com/maps?q=${lat},${lng}
       method:"POST",
 
       headers:{
-        "Content-Type":"application/json"
+        "Content-Type":
+        "application/json"
       },
 
       body:JSON.stringify({
@@ -299,5 +386,7 @@ https://www.google.com/maps?q=${lat},${lng}
     }
   );
 
-  alert("✅ Pedido enviado correctamente");
+  alert(
+    "✅ Pedido enviado correctamente"
+  );
 }
