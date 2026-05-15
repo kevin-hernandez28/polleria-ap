@@ -125,7 +125,7 @@ ${whatsapp}
 https://www.google.com/maps?q=${lat},${lng}
 `;
 
-  fetch("http://localhost:3000/pedido",{
+  fetch("https://polleria-backend.onrender.com/pedido",{
     method:"POST",
     headers:{"Content-Type":"application/json"},
     body:JSON.stringify({ticket})
