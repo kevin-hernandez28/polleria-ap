@@ -13,28 +13,28 @@ const PRECIOS = {
 const IMAGENES = {
 
   pechuga:
-  "https://images.unsplash.com/photo-1604503468506-a8da13d82791?q=80&w=800&auto=format&fit=crop",
+  "https://images.unsplash.com/photo-1604503468506-a8da13d82791?q=80&w=1200&auto=format&fit=crop",
 
   piernas:
-  "https://images.unsplash.com/photo-1562967914-608f82629710?q=80&w=800&auto=format&fit=crop",
+  "https://images.unsplash.com/photo-1562967914-608f82629710?q=80&w=1200&auto=format&fit=crop",
 
   ala:
-  "https://images.unsplash.com/photo-1527477396000-e27163b481c2?q=80&w=800&auto=format&fit=crop",
+  "https://images.unsplash.com/photo-1527477396000-e27163b481c2?q=80&w=1200&auto=format&fit=crop",
 
   huacal:
-  "https://images.unsplash.com/photo-1518492104633-130d0cc84637?q=80&w=800&auto=format&fit=crop",
+  "https://images.unsplash.com/photo-1518492104633-130d0cc84637?q=80&w=1200&auto=format&fit=crop",
 
   patas:
-  "https://images.unsplash.com/photo-1600891964599-f61ba0e24092?q=80&w=800&auto=format&fit=crop",
+  "https://images.unsplash.com/photo-1600891964599-f61ba0e24092?q=80&w=1200&auto=format&fit=crop",
 
   higado:
-  "https://images.unsplash.com/photo-1603048297172-c92544798d5a?q=80&w=800&auto=format&fit=crop",
+  "https://images.unsplash.com/photo-1603048297172-c92544798d5a?q=80&w=1200&auto=format&fit=crop",
 
   cabeza:
-  "https://images.unsplash.com/photo-1544025162-d76694265947?q=80&w=800&auto=format&fit=crop",
+  "https://images.unsplash.com/photo-1544025162-d76694265947?q=80&w=1200&auto=format&fit=crop",
 
   rabadilla:
-  "https://images.unsplash.com/photo-1527477396000-e27163b481c2?q=80&w=800&auto=format&fit=crop"
+  "https://images.unsplash.com/photo-1608039755401-742074f0548d?q=80&w=1200&auto=format&fit=crop"
 };
 
 let carrito = [];
@@ -50,7 +50,7 @@ let temp = {};
 Object.keys(PRECIOS)
 .forEach(i=>temp[i]=1);
 
-/* CREAR CARDS */
+/* CREAR PRODUCTOS */
 
 Object.keys(PRECIOS)
 .forEach(item=>{
@@ -91,14 +91,22 @@ Object.keys(PRECIOS)
 
     <div class="card">
 
-      <img src="${IMAGENES[item]}">
+      <img
+      class="card-img"
+      src="${IMAGENES[item]}">
 
       <div class="card-content">
 
         <h3>${item}</h3>
 
         <p class="precio">
+
           $${PRECIOS[item]}
+
+          <span class="pieza">
+            por pieza
+          </span>
+
         </p>
 
         ${extra}
@@ -129,7 +137,7 @@ Object.keys(PRECIOS)
         class="btn-add"
         onclick="agregar('${item}')">
 
-          Agregar 🛒
+          🛒 Agregar al carrito
 
         </button>
 
@@ -214,24 +222,25 @@ function render(){
 
       <div class="item-carrito">
 
-        <b>${p.item}</b>
+        <h3>
+          🍗 ${p.item}
+        </h3>
 
         ${p.tipo
-          ? "(" + p.tipo + ")"
+          ? `<p>🔪 Corte:
+          ${p.tipo}</p>`
           : ""
         }
 
-        <br><br>
+        <p>
+          🔢 Cantidad:
+          ${p.cantidad}
+        </p>
 
-        🔢 Cantidad:
-        ${p.cantidad}
-
-        <br><br>
-
-        💵 Subtotal:
-        $${p.subtotal}
-
-        <br>
+        <p>
+          💵 Subtotal:
+          $${p.subtotal}
+        </p>
 
         <button
         class="btn-eliminar"
@@ -263,7 +272,7 @@ function eliminar(index){
   render();
 }
 
-/* GPS */
+/* UBICACIÓN */
 
 function usarUbicacion(){
 
@@ -275,7 +284,7 @@ function usarUbicacion(){
   if(!navigator.geolocation){
 
     alert(
-      "Tu navegador no soporta GPS"
+      "GPS no soportado"
     );
 
     return;
@@ -307,7 +316,7 @@ function usarUbicacion(){
   );
 }
 
-/* VER MAPA */
+/* VER UBICACIÓN */
 
 function verUbicacion(){
 
@@ -321,9 +330,8 @@ function verUbicacion(){
   }
 
   window.open(
-    `https://www.google.com/maps?q=${lat},${lng}`,
-    "_blank"
-  );
+  `https://www.google.com/maps?q=${lat},${lng}`,
+  "_blank");
 }
 
 /* ENVIAR */
@@ -368,7 +376,7 @@ function enviarPedido(){
   );
 
   let ticket =
-`*🍗 NUEVO PEDIDO - POLLERÍA ELI*%0A
+`🍗 *NUEVO PEDIDO - POLLERÍA ELI*%0A
 =========================%0A%0A`;
 
   carrito.forEach(p=>{
@@ -384,10 +392,10 @@ ${p.tipo ? `🔪 Corte: ${p.tipo}%0A` : ""}
 `=========================%0A
 💰 TOTAL: $${total}%0A%0A
 
-📱 WhatsApp del cliente:%0A
+📱 Cliente:%0A
 ${whatsapp}%0A%0A
 
-📍 Ubicación del cliente:%0A
+📍 Ubicación:%0A
 https://www.google.com/maps?q=${lat},${lng}
 `;
 
@@ -396,6 +404,5 @@ https://www.google.com/maps?q=${lat},${lng}
 
   window.open(
 `https://wa.me/${numero}?text=${ticket}`,
-"_blank"
-  );
+"_blank");
 }
