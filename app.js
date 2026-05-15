@@ -341,27 +341,31 @@ function enviarPedido(){
     (a,b)=>a+b.subtotal,0
   );
 
+  // 🧾 MENSAJE BONITO
   let ticket =
-`🍗 *PEDIDO POLLERÍA*%0A%0A`;
+`🍗 *NUEVO PEDIDO - POLLERÍA ELI*%0A
+━━━━━━━━━━━━━━━%0A%0A`;
 
   carrito.forEach(p=>{
 
     ticket +=
-`• ${p.item}
-${p.tipo
-  ? "(" + p.tipo + ")"
-  : ""
-}
-x${p.cantidad}
-= $${p.subtotal}%0A`;
+`📦 *Producto:* ${p.item}%0A
+${p.tipo ? `🔪 Corte: ${p.tipo}%0A` : ""}
+🔢 Cantidad: ${p.cantidad}%0A
+💲 Subtotal: $${p.subtotal}%0A%0A`;
   });
 
   ticket +=
-`%0A💰 *TOTAL:* $${total}%0A
+`━━━━━━━━━━━━━━━%0A
+💰 *TOTAL:* $${total}%0A%0A
 
-📱 *WhatsApp Cliente:*%0A${whatsapp}%0A
+📱 *WhatsApp del cliente:*%0A
+${whatsapp}%0A%0A
 
-📍 *Ubicación:*%0Ahttps://www.google.com/maps?q=${lat},${lng}
+📍 *Ubicación del cliente:*%0A
+https://www.google.com/maps?q=${lat},${lng}%0A%0A
+
+🚚 Pedido listo para entregar.
 `;
 
   // 📲 NÚMERO DEL DUEÑO
