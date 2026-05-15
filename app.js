@@ -4,10 +4,10 @@ const PRECIOS = {
   piernas:12,
   ala:5,
   huacal:4,
-  patas:1.5,
-  higado:1.5,
+  patas:1.50,
+  higado:1.50,
   cabeza:1,
-  rabadilla:3
+  rabadilla:2.50
 };
 
 let carrito = [];
