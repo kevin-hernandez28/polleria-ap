@@ -301,7 +301,7 @@ function verUbicacion(){
   window.open(url,"_blank");
 }
 
-// 📲 ENVIAR PEDIDO
+// 📲 ENVIAR PEDIDO POR WHATSAPP
 function enviarPedido(){
 
   const whatsapp =
@@ -342,51 +342,34 @@ function enviarPedido(){
   );
 
   let ticket =
-`🍗 PEDIDO POLLERÍA
-
-`;
+`🍗 *PEDIDO POLLERÍA*%0A%0A`;
 
   carrito.forEach(p=>{
 
     ticket +=
-`${p.item}
+`• ${p.item}
 ${p.tipo
   ? "(" + p.tipo + ")"
   : ""
 }
 x${p.cantidad}
-= $${p.subtotal}
-
-`;
+= $${p.subtotal}%0A`;
   });
 
   ticket +=
-`TOTAL: $${total}
+`%0A💰 *TOTAL:* $${total}%0A
 
-📱 WhatsApp Cliente:
-${whatsapp}
+📱 *WhatsApp Cliente:*%0A${whatsapp}%0A
 
-📍 Ubicación:
-https://www.google.com/maps?q=${lat},${lng}
+📍 *Ubicación:*%0Ahttps://www.google.com/maps?q=${lat},${lng}
 `;
 
-  fetch(
-    "http://localhost:3000/pedido",
-    {
-      method:"POST",
+  // 📲 NÚMERO DEL DUEÑO
+  const numeroDueno =
+  "522281807458";
 
-      headers:{
-        "Content-Type":
-        "application/json"
-      },
+  const url =
+`https://wa.me/${numeroDueno}?text=${ticket}`;
 
-      body:JSON.stringify({
-        ticket
-      })
-    }
-  );
-
-  alert(
-    "✅ Pedido enviado correctamente"
-  );
+  window.open(url,"_blank");
 }
