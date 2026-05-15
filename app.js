@@ -10,33 +10,6 @@ const PRECIOS = {
   rabadilla:3
 };
 
-const IMAGENES = {
-
-  pechuga:
-  "https://images.unsplash.com/photo-1604503468506-a8da13d82791?q=80&w=1200&auto=format&fit=crop",
-
-  piernas:
-  "https://images.unsplash.com/photo-1562967914-608f82629710?q=80&w=1200&auto=format&fit=crop",
-
-  ala:
-  "https://images.unsplash.com/photo-1527477396000-e27163b481c2?q=80&w=1200&auto=format&fit=crop",
-
-  huacal:
-  "https://images.unsplash.com/photo-1518492104633-130d0cc84637?q=80&w=1200&auto=format&fit=crop",
-
-  patas:
-  "https://images.unsplash.com/photo-1600891964599-f61ba0e24092?q=80&w=1200&auto=format&fit=crop",
-
-  higado:
-  "https://images.unsplash.com/photo-1603048297172-c92544798d5a?q=80&w=1200&auto=format&fit=crop",
-
-  cabeza:
-  "https://images.unsplash.com/photo-1544025162-d76694265947?q=80&w=1200&auto=format&fit=crop",
-
-  rabadilla:
-  "https://images.unsplash.com/photo-1608039755401-742074f0548d?q=80&w=1200&auto=format&fit=crop"
-};
-
 let carrito = [];
 
 let lat = null;
@@ -57,6 +30,8 @@ Object.keys(PRECIOS)
 
   let extra = "";
 
+  /* PECHUGA */
+
   if(item==="pechuga"){
 
     extra = `
@@ -71,6 +46,8 @@ Object.keys(PRECIOS)
       </select>
     `;
   }
+
+  /* PIERNAS */
 
   if(item==="piernas"){
 
@@ -91,13 +68,11 @@ Object.keys(PRECIOS)
 
     <div class="card">
 
-      <img
-      class="card-img"
-      src="${IMAGENES[item]}">
-
       <div class="card-content">
 
-        <h3>${item}</h3>
+        <h3>
+          🍗 ${item}
+        </h3>
 
         <p class="precio">
 
@@ -110,6 +85,8 @@ Object.keys(PRECIOS)
         </p>
 
         ${extra}
+
+        <!-- CONTADOR -->
 
         <div class="contador">
 
@@ -132,6 +109,8 @@ Object.keys(PRECIOS)
           </button>
 
         </div>
+
+        <!-- BOTON -->
 
         <button
         class="btn-add"
@@ -227,8 +206,10 @@ function render(){
         </h3>
 
         ${p.tipo
-          ? `<p>🔪 Corte:
-          ${p.tipo}</p>`
+          ? `<p>
+          🔪 Corte:
+          ${p.tipo}
+          </p>`
           : ""
         }
 
@@ -272,7 +253,7 @@ function eliminar(index){
   render();
 }
 
-/* UBICACIÓN */
+/* UBICACION */
 
 function usarUbicacion(){
 
@@ -316,7 +297,7 @@ function usarUbicacion(){
   );
 }
 
-/* VER UBICACIÓN */
+/* VER MAPA */
 
 function verUbicacion(){
 
@@ -377,25 +358,25 @@ function enviarPedido(){
 
   let ticket =
 `🍗 *NUEVO PEDIDO - POLLERÍA ELI*%0A
-=========================%0A%0A`;
+━━━━━━━━━━━━━━━%0A%0A`;
 
   carrito.forEach(p=>{
 
     ticket +=
-`➡️ Producto: ${p.item}%0A
+`📦 *Producto:* ${p.item}%0A
 ${p.tipo ? `🔪 Corte: ${p.tipo}%0A` : ""}
 🔢 Cantidad: ${p.cantidad}%0A
 💵 Subtotal: $${p.subtotal}%0A%0A`;
   });
 
   ticket +=
-`=========================%0A
-💰 TOTAL: $${total}%0A%0A
+`━━━━━━━━━━━━━━━%0A
+💰 *TOTAL:* $${total}%0A%0A
 
-📱 Cliente:%0A
+📱 *Cliente:*%0A
 ${whatsapp}%0A%0A
 
-📍 Ubicación:%0A
+📍 *Ubicación:*%0A
 https://www.google.com/maps?q=${lat},${lng}
 `;
 
