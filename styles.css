@@ -11,6 +11,7 @@
 
 body{
   background:#f5f5f5;
+  color:#222;
 }
 
 /* =========================
@@ -33,7 +34,7 @@ body{
 
   text-align:center;
 
-  padding:90px 20px;
+  padding:100px 20px;
 
   border-bottom-left-radius:35px;
   border-bottom-right-radius:35px;
@@ -44,7 +45,7 @@ body{
 
 .header h1{
 
-  font-size:55px;
+  font-size:58px;
 
   text-shadow:
   0 4px 15px rgba(0,0,0,.5);
@@ -71,6 +72,8 @@ body{
   gap:25px;
 
   padding:25px;
+
+  align-items:flex-start;
 }
 
 /* =========================
@@ -90,7 +93,7 @@ body{
 }
 
 /* =========================
-   CARD
+   CARD PRODUCTO
 ========================= */
 
 .card{
@@ -127,7 +130,11 @@ body{
   text-transform:capitalize;
 
   margin-bottom:10px;
+
+  color:#222;
 }
+
+/* PRECIO */
 
 .precio{
 
@@ -142,7 +149,7 @@ body{
 
 .pieza{
 
-  font-size:14px;
+  font-size:13px;
 
   color:#777;
 }
@@ -164,6 +171,8 @@ body{
   font-size:15px;
 
   outline:none;
+
+  background:white;
 }
 
 /* =========================
@@ -267,8 +276,6 @@ body{
 
   padding:25px;
 
-  height:fit-content;
-
   position:sticky;
 
   top:20px;
@@ -278,7 +285,7 @@ body{
 }
 
 /* =========================
-   PEDIDO PREMIUM
+   HEADER PEDIDO
 ========================= */
 
 .pedido-header{
@@ -305,7 +312,7 @@ body{
 }
 
 /* =========================
-   ITEM PEDIDO
+   ITEMS PEDIDO
 ========================= */
 
 .item-carrito{
@@ -336,9 +343,7 @@ body{
   color:#444;
 }
 
-/* =========================
-   BOTON ELIMINAR
-========================= */
+/* BOTON ELIMINAR */
 
 .btn-eliminar{
 
@@ -359,6 +364,13 @@ body{
   font-weight:bold;
 
   cursor:pointer;
+
+  transition:.2s;
+}
+
+.btn-eliminar:hover{
+
+  background:#e1261c;
 }
 
 /* =========================
@@ -377,7 +389,7 @@ body{
 
   color:white;
 
-  padding:20px;
+  padding:18px;
 
   border-radius:20px;
 
@@ -389,14 +401,40 @@ body{
 
 .total-box span{
 
-  font-size:16px;
+  font-size:15px;
+
+  opacity:.95;
 }
 
 .total-box h3{
 
-  font-size:38px;
+  margin-top:6px;
 
-  margin-top:5px;
+  display:flex;
+
+  justify-content:center;
+
+  align-items:center;
+
+  gap:2px;
+
+  font-size:30px;
+
+  font-weight:bold;
+}
+
+.total-box .peso{
+
+  font-size:22px;
+
+  position:relative;
+
+  top:-1px;
+}
+
+#total{
+
+  font-size:30px;
 }
 
 /* =========================
@@ -417,6 +455,8 @@ body{
 .ubicacion-box h3{
 
   margin-bottom:8px;
+
+  color:#222;
 }
 
 .ubicacion-box p{
@@ -485,6 +525,8 @@ body{
   font-weight:bold;
 
   text-align:center;
+
+  font-size:14px;
 }
 
 /* =========================
@@ -503,6 +545,8 @@ body{
   margin-bottom:10px;
 
   font-weight:bold;
+
+  color:#333;
 }
 
 .input-container input{
@@ -518,6 +562,16 @@ body{
   font-size:15px;
 
   outline:none;
+
+  transition:.2s;
+}
+
+.input-container input:focus{
+
+  border-color:#ff3b30;
+
+  box-shadow:
+  0 0 10px rgba(255,59,48,.15);
 }
 
 /* =========================
@@ -540,7 +594,7 @@ body{
 
   color:white;
 
-  font-size:19px;
+  font-size:18px;
 
   font-weight:bold;
 
@@ -577,12 +631,37 @@ body{
   .carrito{
 
     position:relative;
+
     top:0;
   }
 
   .header h1{
 
-    font-size:38px;
+    font-size:40px;
+  }
+}
+
+@media(max-width:600px){
+
+  .menu{
+
+    grid-template-columns:
+    repeat(1,1fr);
+  }
+
+  .header{
+
+    padding:70px 15px;
+  }
+
+  .header h1{
+
+    font-size:34px;
+  }
+
+  .header p{
+
+    font-size:16px;
   }
 }
 
