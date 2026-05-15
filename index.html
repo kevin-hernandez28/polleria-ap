@@ -15,110 +15,99 @@
   rel="stylesheet"
   href="styles.css">
 
-  <!-- ICONOS -->
-  <link
-  rel="stylesheet"
-  href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
-
 </head>
 
 <body>
 
-  <!-- HERO -->
+  <!-- HEADER -->
 
-  <header class="hero">
+  <header class="header">
 
-    <div class="hero-content">
+    <h1>🍗 Pollería Eli</h1>
 
-      <h1>🍗 POLLERÍA ELI</h1>
-
-      <p>
-        El mejor pollo fresco hasta tu casa
-      </p>
-
-    </div>
+    <p>
+      Haz tu pedido rápido y fácil
+    </p>
 
   </header>
 
-  <!-- APP -->
+  <!-- CONTENIDO -->
 
-  <main class="app">
+  <div class="container">
 
-    <!-- MENÚ -->
+    <!-- MENU -->
 
-    <section class="menu-section">
+    <div
+    class="menu"
+    id="menu"></div>
 
-      <div class="title-row">
+    <!-- CARRITO PREMIUM -->
 
-        <h2>🔥 Nuestro menú</h2>
+    <div class="carrito">
 
-      </div>
-
-      <div
-      class="menu-grid"
-      id="menu"></div>
-
-    </section>
-
-    <!-- CARRITO -->
-
-    <aside class="cart">
-
-      <div class="cart-header">
+      <div class="pedido-header">
 
         <h2>🛒 Tu pedido</h2>
 
+        <p>
+          Revisa tus productos antes de enviar
+        </p>
+
       </div>
+
+      <!-- PRODUCTOS -->
 
       <div id="carrito"></div>
 
+      <!-- TOTAL -->
+
       <div class="total-box">
 
-        TOTAL:
+        <span>Total</span>
 
-        <span>
+        <h3>
           $<span id="total">0</span>
-        </span>
+        </h3>
 
       </div>
 
-      <!-- UBICACIÓN -->
+      <!-- UBICACION -->
 
-      <div class="gps-box">
+      <div class="ubicacion-box">
 
-        <h3>📍 Tu ubicación</h3>
+        <h3>📍 Dirección de entrega</h3>
+
+        <p>
+          Usa tu ubicación actual para registrar tu domicilio
+        </p>
 
         <button
-        class="btn-location"
+        class="btn-ubicacion"
         onclick="usarUbicacion()">
 
-          <i class="fa-solid fa-location-dot"></i>
-
-          Usar mi ubicación actual
+          📍 Usar mi ubicación actual
 
         </button>
 
         <button
-        class="btn-map"
+        class="btn-mapa"
         onclick="verUbicacion()">
 
-          <i class="fa-solid fa-map-location-dot"></i>
-
-          Ver ubicación seleccionada
+          🗺️ Ver ubicación seleccionada
 
         </button>
 
-        <p id="estado"></p>
+        <div id="estado"></div>
 
       </div>
 
       <!-- WHATSAPP -->
 
-      <div class="input-box">
+      <div class="input-container">
 
         <label>
 
-          📱 WhatsApp del cliente
+          📱 Número de WhatsApp
 
         </label>
 
@@ -129,21 +118,19 @@
 
       </div>
 
-      <!-- BOTÓN -->
+      <!-- BOTON -->
 
       <button
-      class="btn-send"
+      class="btn-final"
       onclick="enviarPedido()">
 
-        <i class="fa-brands fa-whatsapp"></i>
-
-        Enviar pedido
+        🍗 Enviar pedido por WhatsApp
 
       </button>
 
-    </aside>
+    </div>
 
-  </main>
+  </div>
 
   <script src="app.js"></script>
 
