@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<title>Pollería Online</title>
+<link rel="stylesheet" href="styles.css">
+</head>
+
+<body>
+
+<header class="header">
+  <h1>🍗 Pollería Online</h1>
+  <p>Haz tu pedido rápido</p>
+</header>
+
+<div class="container">
+
+  <!-- MENÚ -->
+  <div class="menu" id="menu"></div>
+
+  <!-- CARRITO -->
+  <div class="carrito">
+
+    <h2>🛒 Pedido</h2>
+    <div id="carrito"></div>
+
+    <h3>Total: $<span id="total">0</span></h3>
+
+    <hr>
+
+    <!-- 📍 SOLO BOTÓN -->
+    <h3>📍 Ubicación</h3>
+
+    <button class="btn-ubicacion" onclick="usarUbicacion()">
+      📍 Usar mi ubicación actual
+    </button>
+
+    <p id="estado"></p>
+
+    <input id="whatsapp" placeholder="Tu WhatsApp">
+
+    <button class="btn-final" onclick="enviarPedido()">
+      Confirmar pedido 🍗📲
+    </button>
+
+  </div>
+
+</div>
+
+<script src="app.js"></script>
+
+</body>
+</html>
