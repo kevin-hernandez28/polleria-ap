@@ -8,6 +8,7 @@ const PRECIOS = {
   higado:1.50,
   cabeza:1,
   rabadilla:2.50
+
 };
 
 let carrito = [];
@@ -15,54 +16,86 @@ let carrito = [];
 let lat = null;
 let lng = null;
 
+/* =========================
+   MENU
+========================= */
+
 const menu =
 document.getElementById("menu");
+
+/* =========================
+   CANTIDADES
+========================= */
 
 let temp = {};
 
 Object.keys(PRECIOS)
-.forEach(i=>temp[i]=1);
+.forEach(i => temp[i] = 1);
 
-/* CREAR PRODUCTOS */
+/* =========================
+   GENERAR PRODUCTOS
+========================= */
 
 Object.keys(PRECIOS)
-.forEach(item=>{
+.forEach(item => {
 
-  let extra = "";
+  let extraMenu = "";
 
   /* PECHUGA */
 
-  if(item==="pechuga"){
+  if(item === "pechuga"){
 
-    extra = `
+    extraMenu = `
+
       <select
       id="tipo-pechuga"
       class="select-tipo">
 
-        <option>Entera</option>
-        <option>Partida</option>
-        <option>Bisteck</option>
+        <option value="Entera">
+          Entera
+        </option>
+
+        <option value="Partida">
+          Partida
+        </option>
+
+        <option value="Bisteck">
+          Bisteck
+        </option>
 
       </select>
+
     `;
   }
 
   /* PIERNAS */
 
-  if(item==="piernas"){
+  if(item === "piernas"){
 
-    extra = `
+    extraMenu = `
+
       <select
       id="tipo-piernas"
       class="select-tipo">
 
-        <option>Normal</option>
-        <option>Partidas</option>
-        <option>Bisteck</option>
+        <option value="Normal">
+          Normal
+        </option>
+
+        <option value="Partidas">
+          Partidas
+        </option>
+
+        <option value="Bisteck">
+          Bisteck
+        </option>
 
       </select>
+
     `;
   }
+
+  /* CARD */
 
   menu.innerHTML += `
 
@@ -71,22 +104,20 @@ Object.keys(PRECIOS)
       <div class="card-content">
 
         <h3>
-          🍗 ${item}
+          ${item}
         </h3>
 
         <p class="precio">
 
           $${PRECIOS[item]}
 
-          <span class="pieza">
-            por pieza
-          </span>
-
         </p>
 
-        ${extra}
+        <p class="pieza">
+          Precio por pieza
+        </p>
 
-        <!-- CONTADOR -->
+        ${extraMenu}
 
         <div class="contador">
 
@@ -98,7 +129,9 @@ Object.keys(PRECIOS)
           </button>
 
           <span id="cant-${item}">
+
             1
+
           </span>
 
           <button
@@ -110,54 +143,61 @@ Object.keys(PRECIOS)
 
         </div>
 
-        <!-- BOTON -->
-
         <button
         class="btn-add"
         onclick="agregar('${item}')">
 
-          🛒 Agregar al carrito
+          Agregar 🛒
 
         </button>
 
       </div>
 
     </div>
+
   `;
 });
 
-/* SUMAR */
+/* =========================
+   SUMAR
+========================= */
 
 function mas(i){
 
   temp[i]++;
 
   document.getElementById(
-    "cant-"+i
-  ).innerText=temp[i];
+    "cant-" + i
+  ).innerText = temp[i];
 }
 
-/* RESTAR */
+/* =========================
+   RESTAR
+========================= */
 
 function menos(i){
 
-  if(temp[i]>1){
+  if(temp[i] > 1){
 
     temp[i]--;
 
     document.getElementById(
-      "cant-"+i
-    ).innerText=temp[i];
+      "cant-" + i
+    ).innerText = temp[i];
   }
 }
 
-/* AGREGAR */
+/* =========================
+   AGREGAR AL CARRITO
+========================= */
 
 function agregar(i){
 
   let tipo = "";
 
-  if(i==="pechuga"){
+  /* PECHUGA */
+
+  if(i === "pechuga"){
 
     tipo =
     document.getElementById(
@@ -165,7 +205,9 @@ function agregar(i){
     ).value;
   }
 
-  if(i==="piernas"){
+  /* PIERNAS */
+
+  if(i === "piernas"){
 
     tipo =
     document.getElementById(
@@ -176,21 +218,27 @@ function agregar(i){
   carrito.push({
 
     item:i,
+
     tipo:tipo,
+
     cantidad:temp[i],
 
     subtotal:
-    temp[i]*PRECIOS[i]
+    temp[i] * PRECIOS[i]
+
   });
 
   render();
 }
 
-/* RENDER */
+/* =========================
+   RENDER CARRITO
+========================= */
 
 function render(){
 
   let html = "";
+
   let total = 0;
 
   carrito.forEach((p,index)=>{
@@ -205,22 +253,28 @@ function render(){
           🍗 ${p.item}
         </h3>
 
-        ${p.tipo
-          ? `<p>
-          🔪 Corte:
-          ${p.tipo}
+        ${
+          p.tipo
+          ?
+          `<p>
+            🔪 ${p.tipo}
           </p>`
-          : ""
+          :
+          ""
         }
 
         <p>
+
           🔢 Cantidad:
           ${p.cantidad}
+
         </p>
 
         <p>
-          💵 Subtotal:
+
+          💰 Subtotal:
           $${p.subtotal}
+
         </p>
 
         <button
@@ -232,19 +286,22 @@ function render(){
         </button>
 
       </div>
+
     `;
   });
 
   document.getElementById(
     "carrito"
-  ).innerHTML=html;
+  ).innerHTML = html;
 
   document.getElementById(
     "total"
-  ).innerText=total;
+  ).innerText = total;
 }
 
-/* ELIMINAR */
+/* =========================
+   ELIMINAR
+========================= */
 
 function eliminar(index){
 
@@ -253,7 +310,9 @@ function eliminar(index){
   render();
 }
 
-/* UBICACION */
+/* =========================
+   GPS
+========================= */
 
 function usarUbicacion(){
 
@@ -265,7 +324,7 @@ function usarUbicacion(){
   if(!navigator.geolocation){
 
     alert(
-      "GPS no soportado"
+      "Tu navegador no soporta GPS"
     );
 
     return;
@@ -297,7 +356,9 @@ function usarUbicacion(){
   );
 }
 
-/* VER MAPA */
+/* =========================
+   VER UBICACION
+========================= */
 
 function verUbicacion(){
 
@@ -310,12 +371,18 @@ function verUbicacion(){
     return;
   }
 
+  const url =
+  `https://www.google.com/maps?q=${lat},${lng}`;
+
   window.open(
-  `https://www.google.com/maps?q=${lat},${lng}`,
-  "_blank");
+    url,
+    "_blank"
+  );
 }
 
-/* ENVIAR */
+/* =========================
+   ENVIAR PEDIDO
+========================= */
 
 function enviarPedido(){
 
@@ -324,7 +391,9 @@ function enviarPedido(){
     "whatsapp"
   ).value;
 
-  if(carrito.length===0){
+  /* VALIDACIONES */
+
+  if(carrito.length === 0){
 
     alert(
       "Agrega productos"
@@ -336,7 +405,7 @@ function enviarPedido(){
   if(!whatsapp){
 
     alert(
-      "Ingresa tu WhatsApp"
+      "Escribe tu WhatsApp"
     );
 
     return;
@@ -351,10 +420,15 @@ function enviarPedido(){
     return;
   }
 
+  /* TOTAL */
+
   let total =
   carrito.reduce(
-    (a,b)=>a+b.subtotal,0
+    (a,b)=>a+b.subtotal,
+    0
   );
+
+  /* TICKET */
 
   let ticket =
 `🍗 *NUEVO PEDIDO - POLLERÍA ELI*%0A
@@ -364,26 +438,36 @@ function enviarPedido(){
 
     ticket +=
 `📦 *Producto:* ${p.item}%0A
-${p.tipo ? `🔪 Corte: ${p.tipo}%0A` : ""}
-🔢 Cantidad: ${p.cantidad}%0A
-💵 Subtotal: $${p.subtotal}%0A%0A`;
+${p.tipo ? `🔪 *Corte:* ${p.tipo}%0A` : ""}
+🔢 *Cantidad:* ${p.cantidad}%0A
+💰 *Subtotal:* $${p.subtotal}%0A%0A`;
   });
 
   ticket +=
 `━━━━━━━━━━━━━━━%0A
-💰 *TOTAL:* $${total}%0A%0A
+💵 *TOTAL:* $${total}%0A%0A
 
-📱 *Cliente:*%0A
+📱 *WhatsApp Cliente:*%0A
 ${whatsapp}%0A%0A
 
-📍 *Ubicación:*%0A
-https://www.google.com/maps?q=${lat},${lng}
+📍 *Ubicación del cliente:*%0A
+https://www.google.com/maps?q=${lat},${lng}%0A%0A
+
+🚚 Pedido listo para entregar.
 `;
 
-  const numero =
+  /* NUMERO DUEÑO */
+
+  const numeroDueno =
   "522281807458";
 
+  /* URL WHATSAPP */
+
+  const url =
+`https://wa.me/${numeroDueno}?text=${ticket}`;
+
   window.open(
-`https://wa.me/${numero}?text=${ticket}`,
-"_blank");
+    url,
+    "_blank"
+  );
 }
